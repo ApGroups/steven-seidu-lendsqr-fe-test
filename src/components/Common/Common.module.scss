@@ -31,6 +31,10 @@ a {
   list-style: none;
 }
 
+button{
+  border: none;
+  background: none;
+}
 // .pad {
 //   padding: 10px;
 // }
@@ -290,4 +294,16 @@ a {
 
 li i {
   padding: 0 10px 0 2px;
+}
+
+
+@media (max-width: 850px) {
+  .visible {
+    transform: translateX(0);
+    // background-color: red;
+  }
+  
+  .hidden {
+    transform: translateX(-100%);
+  }
 }

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Logo from '../../assets/images/Logo.png';
 import profile from '../../assets/images/user.jpeg';
 import styles from './Common.module.scss'; 
 import { Link } from 'react-router-dom';
-import { FaBell, FaSearch, FaAngleDown} from 'react-icons/fa';
+import { FaBell, FaSearch, FaAngleDown, FaEllipsisV } from 'react-icons/fa';
 
-const Nav: React.FC<{ username: string }> = ({ username }) => {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+interface NavProps {
+  username: string;
+  toggleSidebar: () => void;
+}
 
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
-
+const Nav: React.FC<NavProps> = ({ username, toggleSidebar }) => {
   return (
     <nav className={styles.nav}>
       <div className={styles.pad}>
@@ -31,7 +30,7 @@ const Nav: React.FC<{ username: string }> = ({ username }) => {
                     required
                   />
                   <span className={styles.showSearch} id="showSearch">
-                    <i>< FaSearch/></i>
+                    <i><FaSearch /></i>
                   </span>
                 </div>
               </div>
@@ -40,17 +39,19 @@ const Nav: React.FC<{ username: string }> = ({ username }) => {
           <div className={styles.doc}>
             <ul className={styles.docUl}>
               <div className={styles.docUll}>
-              <li><a href="#">Docs</a></li>
-              <li><a href="#"><i>< FaBell/></i></a></li>
+                <li><button type="button">Docs</button></li>
+                <li><button type="button"><i><FaBell /></i></button></li>
               </div>
               <li className={styles.nolipad}>
                 <div className={styles.navPro}>
                   <img className={styles.navimg} src={profile} alt="Profile" />
                   <h3>{username}</h3>
-                  <i>< FaAngleDown/></i>
+                  <i><FaAngleDown /></i>
+              <div className={styles.leftbarbtn} onClick={toggleSidebar}>
+                <i>< FaEllipsisV/></i>
+              </div>
                 </div>
               </li>
-              <li className={styles.leftbarbtn}><i>#</i></li>
             </ul>
           </div>
         </div>

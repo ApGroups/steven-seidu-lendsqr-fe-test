@@ -4,7 +4,7 @@ import Nav from '../Common/Header';
 import Sidebar from '../Common/Sidebar';
 import styles from './UserPage.module.scss';
 import { User } from '../../types';
-import { FaFilter, FaAngleRight, FaAngleLeft, FaEllipsisV, FaEye, FaUserSlash, FaUserCheck, FaUser, FaRegUser, FaUsers, FaUsersCog, FaFileContract, FaMonero, FaMoneyCheck} from 'react-icons/fa';
+import { FaFilter, FaAngleRight, FaAngleLeft, FaEllipsisV, FaEye, FaUserSlash, FaUserCheck, FaRegUser, FaUsers, FaFileContract, FaMoneyCheck} from 'react-icons/fa';
 
 const UserComponent: React.FC = () => {
     const [users, setUsers] = useState<User[] | null>(null);
@@ -75,8 +75,8 @@ const UserComponent: React.FC = () => {
 
     return (
         <>
-            <Nav username={username} />
-            <Sidebar />
+        <Nav username={username} toggleSidebar={() => {}} />
+        <Sidebar isVisible={true} toggleSidebar={() => {}} />
             <section className={styles.sec}>
                 <div className={styles.secpad}>
                     <div>

@@ -1,10 +1,16 @@
 import React from 'react';
-import { FaHome, FaUsers, FaUserShield, FaDollarSign, FaChartLine, FaUniversity, FaHandHoldingUsd, FaCogs, FaRegFileAlt, FaBoxes, FaBriefcase, FaMoneyBill, FaExchangeAlt, FaTools, FaLock, FaRegFileCode, FaPowerOff, FaThList } from 'react-icons/fa';
+import { FaHome, FaUsers, FaUserShield, FaDollarSign, FaChartLine, FaUniversity, FaHandHoldingUsd, FaCogs, FaRegFileAlt, FaBoxes, FaBriefcase, FaExchangeAlt, FaTools, FaLock, FaRegFileCode, FaPowerOff, FaThList } from 'react-icons/fa';
 import styles from './Common.module.scss'; // Adjust the path if necessary
 import { Link } from 'react-router-dom';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isVisible: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isVisible }) => {
   return (
+    <div className={`${styles.sidebar} ${isVisible ? styles.visible : styles.hidden}`}>
     <div className={styles.leftbar}>
       <div className={styles.leftpad}>
         <ul className={styles.switchO}>
@@ -46,6 +52,7 @@ const Sidebar: React.FC = () => {
           <p><span className={styles.hiddenText}>v1.2.0</span></p>
         </ul>
       </div>
+    </div>
     </div>
   );
 };

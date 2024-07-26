@@ -5,21 +5,25 @@ import Sidebar from '../Common/Sidebar';
 import styles from './UserDetails.module.scss';
 import { User } from '../../types';
 import profile from '../../assets/images/user.jpeg';
-import { FaRegStar, FaStarHalfAlt, FaStar, FaRegFileAlt, FaArrowLeft, FaFile, FaMoneyBill, FaMoneyBillWaveAlt, FaUniversity} from 'react-icons/fa';
+import { FaRegStar, FaStar, FaRegFileAlt, FaArrowLeft, FaFile, FaMoneyBill, FaMoneyBillWaveAlt, FaUniversity } from 'react-icons/fa';
 
 const UserDetails: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [username, setUsername] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
     const [activeSection, setActiveSection] = useState<string>('generalDetails');
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Extract user index from the location state
     const { userIndex } = location.state as { userIndex: number };
 
     useEffect(() => {
-        console.log('Index from params:', userIndex);
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+
         if (userIndex === undefined) {
             setError('No user ID provided.');
             setLoading(false);
@@ -197,15 +201,14 @@ const UserDetails: React.FC = () => {
 
     return (
         <>
-            <Nav username={user?.username || ''} />
-            <Sidebar />
+            <Nav username={username} toggleSidebar={() => {}} />
+            <Sidebar isVisible={true} toggleSidebar={() => {}} />
             <section className={styles.sec}>
                 <div className={styles.secpad}>
                     <div>
-                        <span className={`${styles.logo} ${styles.Ulogo}`} onClick={() => navigate('/UserPage')}>
-                            {/* <i>#</i> */}
-                            <p><FaArrowLeft />Back to users</p>
-                        </span>
+                        <button className={`${styles.logo} ${styles.Ulogo}`} onClick={() => navigate('/UserPage')}>
+                            <FaArrowLeft /> Back to users
+                        </button>
                         <div className={styles.uselogo}>
                             <span className={`${styles.logo} ${styles.Ulogo}`}>
                                 <h1>User Details</h1>
@@ -241,7 +244,7 @@ const UserDetails: React.FC = () => {
                                     <div className={`${styles.genSide} ${styles.genS}`}>
                                         <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
                                             <h1>User’s Tier</h1>
-                                            <p><i><FaStar/></i><i><FaRegStar/></i><i><FaRegStar/></i></p>
+                                            <p><FaStar/><FaRegStar/><FaRegStar/></p>
                                         </div>
                                     </div>
                                     <div className={styles.genSide}>
@@ -252,54 +255,48 @@ const UserDetails: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className={styles.genDets}>
-                                    <a
-                                        href="#"
+                                    <button
                                         onClick={() => handleSectionChange('generalDetails')}
-                                        className={activeSection === 'generalDetails' ? styles.genAct : ''}
+                                        className={`${activeSection === 'generalDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}><span className={styles.hiddenText}>General Details</span></p>
-                                        <p className={styles.gendIco}><i><FaFile/></i></p>
-                                    </a>
-                                    <a
-                                        href="#"
+                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}>General Details</p>
+                                        <p className={styles.gendIco}><FaFile/></p>
+                                    </button>
+                                    <button
                                         onClick={() => handleSectionChange('documents')}
-                                        className={activeSection === 'documents' ? styles.genAct : ''}
+                                        className={`${activeSection === 'documents' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <span className={styles.hiddenText}> Documents</span>
-                                        <p className={styles.gendIco}><i><FaRegFileAlt/></i></p>
-                                    </a>
-                                    <a
-                                        href="#"
+                                        Documents
+                                        <p className={styles.gendIco}><FaRegFileAlt/></p>
+                                    </button>
+                                    <button
                                         onClick={() => handleSectionChange('bankDetails')}
-                                        className={activeSection === 'bankDetails' ? styles.genAct : ''}
+                                        className={`${activeSection === 'bankDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <span className={styles.hiddenText}> Bank Details</span>
-                                        <p className={styles.gendIco}><i><FaUniversity/></i></p>
-                                    </a>
-                                    <a
-                                        href="#"
+                                        Bank Details
+                                        <p className={styles.gendIco}><FaUniversity/></p>
+                                    </button>
+                                    <button
                                         onClick={() => handleSectionChange('loans')}
-                                        className={activeSection === 'loans' ? styles.genAct : ''}
+                                        className={`${activeSection === 'loans' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <span className={styles.hiddenText}> Loans</span>
-                                        <p className={styles.gendIco}><i><FaMoneyBill/></i></p>
-                                    </a>
-                                    <a
-                                        href="#"
+                                        Loans
+                                        <p className={styles.gendIco}><FaMoneyBill/></p>
+                                    </button>
+                                    <button
                                         onClick={() => handleSectionChange('savings')}
-                                        className={activeSection === 'savings' ? styles.genAct : ''}
+                                        className={`${activeSection === 'savings' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <span className={styles.hiddenText}> Savings</span>
-                                        <p className={styles.gendIco}><i><FaMoneyBillWaveAlt/></i></p>
-                                    </a>
-                                    <a
-                                        href="#"
+                                        Savings
+                                        <p className={styles.gendIco}><FaMoneyBillWaveAlt/></p>
+                                    </button>
+                                    <button
                                         onClick={() => handleSectionChange('appAndSystem')}
-                                        className={activeSection === 'appAndSystem' ? styles.genAct : ''}
+                                        className={`${activeSection === 'appAndSystem' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <span className={styles.hiddenText}> App and Systems</span>
-                                        <p className={styles.gendIco}><i>#</i></p>
-                                    </a>
+                                        App and Systems
+                                        <p className={styles.gendIco}>#</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>

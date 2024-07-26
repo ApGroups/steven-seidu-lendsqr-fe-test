@@ -5,7 +5,7 @@ import Sidebar from '../Common/Sidebar';
 import styles from './DashBoard.module.scss';
 import styless from '../../components/Common/Common.module.scss';
 import { User } from '../../types';
-import { FaAngleDown, FaEllipsisH, FaFacebookMessenger, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaEllipsisH, FaFacebookMessenger, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { ApexOptions } from 'apexcharts';
 import profile from '../../assets/images/user.jpeg';
 
@@ -14,7 +14,6 @@ const UserComponent: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [username, setUsername] = useState<string>('');
-    const [dateJoined, setDateJoined] = useState<string>('');
     const [totalLoan, setTotalLoan] = useState<number>(0);
     const [loanRepayments, setLoanRepayments] = useState<number[]>([]);
     const [expenses, setExpenses] = useState<number[]>([]);
@@ -149,7 +148,6 @@ const UserComponent: React.FC = () => {
                 setTotalLoan(totalLoanAmount);
                 setLoanRepayments([totalLoanAmount]);
                 setExpenses([totalExpenses]);
-                setDateJoined(dateJoined);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -166,7 +164,6 @@ const UserComponent: React.FC = () => {
                     return response.json();
                 })
                 .then((data: { twitter: number, facebook: number, instagram: number }) => {
-                    const totalUsers = users.length || 1; // Avoid division by zero
 
                     setTwitterCount(data.twitter);
                     setFacebookCount(data.facebook);
@@ -189,8 +186,8 @@ const UserComponent: React.FC = () => {
 
     return (
         <>
-            <Nav username={username} />
-            <Sidebar />
+        <Nav username={username} toggleSidebar={() => {}} />
+        <Sidebar isVisible={true} toggleSidebar={() => {}} />
             <section className={styles.sec}>
                 <div className={styles.secpad}>
                     <div className={styles.spacev}></div>
@@ -224,7 +221,7 @@ const UserComponent: React.FC = () => {
                                     <div className={styles.chartContainer}>
                                         <ReactApexChart
                                             options={donutChartOptions}
-                                            series={loanRepayments}
+                                            series={expenses}
                                             type="donut"
                                             height="100%"
                                             width="80%"
@@ -270,17 +267,14 @@ const UserComponent: React.FC = () => {
                                 <div className={`${styles.navPro} ${styles.imgp}`}>
                                     <img className={styless.navimg} src={profile} alt="Profile" />
                                     <h3>{username}</h3>
-                                    <h3 className={styles.hiddenText}>- -{username}</h3>
                                 </div>
                                 <div className={`${styles.navPro} ${styles.imgp}`}>
                                     <img className={styless.navimg} src={profile} alt="Profile" />
                                     <h3>{username}</h3>
-                                    <h4>{dateJoined}</h4>
                                 </div>
                                 <div className={`${styles.navPro} ${styles.imgp}`}>
                                     <img className={styless.navimg} src={profile} alt="Profile" />
                                     <h3>{username}</h3>
-                                    <h4>{dateJoined}</h4>
                                 </div>
                                 </div>
                             </div>
