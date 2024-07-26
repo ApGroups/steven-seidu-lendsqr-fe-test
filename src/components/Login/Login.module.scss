@@ -1,0 +1,250 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Container Styles */
+.sec {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  flex-direction: column; /* Ensure vertical alignment by default */
+}
+
+/* Left Side Styles */
+.logleft {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Ensure vertical alignment by default */
+  
+  .img, img {
+    width: 30%;
+    height: 30%;
+    font-size: 25px;
+    color: #213F7D;
+    display: flex;
+    align-items: center;
+  }
+
+  .logospace, .vectspace {
+    height: 30px;
+  }
+
+  .vectsi {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .vectbg {
+    width: 100%;
+    height: 70%;
+    background-image: url(../../assets/images/LoginVector.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .centspace {
+    width: 3%;
+  }
+}
+
+/* Right Side Styles */
+.logright {
+  width: 100%;
+  height: auto;
+  
+  > div {
+    padding: 50px;
+  }
+
+  .logospace, .vectspace {
+    height: 30px;
+  }
+
+  .title {
+    text-align: left;
+    
+    h1 {
+      padding-bottom: 10px;
+      color: #213F7D;
+      font-size: 33px;
+    }
+    
+    p {
+      color: #545F7D;
+      font-weight: 200;
+    }
+  }
+  
+  .titlespace {
+    height: 20%;
+  }
+}
+
+/* Form Container Styles */
+.formContainer {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    
+    &:focus {
+      border-color: #39CDCC;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(57, 205, 204, 0.2);
+    }
+  }
+
+  input[type="submit"] {
+    background-color: #39CDCC;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: #34bdbb;
+    }
+  }
+}
+
+.forgotPassword {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  margin: 10px 0 30px;
+  text-decoration: none;
+  color: #39CDCC;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #34bdbb;
+  }
+}
+
+/* Password Input Styles */
+.passwordContainer {
+  display: flex;
+  align-items: center;
+  
+  input[type="password"] {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    padding: 10px;
+    margin-right: -1px; /* Ensures no gap between input and button */
+  }
+  
+  .showPassword {
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #39CDCC;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+  .login {
+    flex-direction: row; /* Side by side on larger screens */
+  }
+
+  .logleft, .logright {
+    width: 50%; /* Equal width for left and right sides */
+  }
+}
+
+@media (max-width: 767px) {
+  .logleft, .logright {
+    width: 100%; /* Full width for smaller screens */
+  }
+  
+  .formContainer {
+    max-width: 90%; /* Reduce width for smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+  .vectsi {
+    height: 30vh;
+  }
+.logleft {
+  .title h1 {
+    font-size: 28px; /* Adjust font size for smaller screens */
+  }
+}
+  .vectbg{
+    background-size: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .logospace{
+    position: relative;
+  }
+  .formContainer {
+    padding: 5px; /* Further reduce padding for very small screens */
+  }
+
+  .title h1 {
+    font-size: 24px; /* Further adjust font size for very small screens */
+  }
+
+  input {
+    width: 100%; /* Full width inputs on very small screens */
+  }
+  .vectsi {
+    height: 20vh;
+  }
+}
