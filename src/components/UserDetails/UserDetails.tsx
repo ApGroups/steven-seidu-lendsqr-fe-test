@@ -30,7 +30,7 @@ const UserDetails: React.FC = () => {
             return;
         }
 
-        fetch(`https://steven-seidu-lendsqr-fe-test.vercel.app/api/users/${userIndex}`)
+        fetch(`https://steven-seidu-lendsqr-fe-test.vercel.app/api/users?index=${index}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
