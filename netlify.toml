@@ -1,0 +1,19 @@
+[build]
+  base = "/"                  # Base directory for the build
+  command = "npm run build"   # Build command
+  publish = "build"           # Directory to publish
+
+[functions]
+  directory = "."              # Directory for serverless functions (root directory)
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+  # Redirect API requests to serverless functions
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
+  status = 200
+  force = true
