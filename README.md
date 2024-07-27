@@ -1,6 +1,9 @@
 Steven Seidu - Lendsqr
+
 Overview
+
 This project is a React-based frontend application for Lendsqr, a platform designed for managing loans and user authentication. The application is deployed on Netlify and Vercel, which support static sites and serverless functions but do not support traditional backend servers. Therefore, backend operations are handled via serverless functions on these platforms, and the Express server is intended for local development only. Due to limitations with Netlify and Vercel, the db.json file cannot be read and hosted on these platforms and must be hosted locally for development purposes.
+
 
 Project Structure
 /src: Contains all source files for the React application.
@@ -24,18 +27,18 @@ Installation
 Clone the repository:
 
 bash
-Copy code
+Copy code:
 git clone https://github.com/ApGroups/steven-seidu-lendsqr-fe-test.git
 cd steven-seidu-lendsqr-fe-test
 Install dependencies:
 
 bash
-Copy code
+Copy code : 
 npm install
 Start the development server:
 
 bash
-Copy code
+Copy code : 
 npm start
 The application will be available at http://localhost:3000.
 
