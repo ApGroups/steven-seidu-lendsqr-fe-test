@@ -16,7 +16,7 @@ const UserDetails: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { userIndex } = location.state as { userIndex: number };
+    const userIndex = location.state?.userIndex;
 
     useEffect(() => {
         const storedUsername = localStorage.getItem('username');
@@ -30,7 +30,7 @@ const UserDetails: React.FC = () => {
             return;
         }
 
-        fetch(`https://steven-seidu-lendsqr-fe-test.vercel.app/api/users?index=${index}`)
+        fetch(`https://steven-seidu-lendsqr-fe-test.vercel.app/api/users/${userIndex}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -58,209 +58,127 @@ const UserDetails: React.FC = () => {
                 return (
                     <div className={styles.spacev}>
                         <div className={styles.User1}>
-                            <div className={styles.UserBp}>
-                                <div className={styles.userPb}>
-                                    <table className={styles.infoTable}>
-                                        <thead>
-                                            <tr>
-                                                <th colSpan={5}>Personal Information</th>
+                            {/* Personal Information */}
+                            <div className={styles.userPb}>
+                                <table className={styles.infoTable}>
+                                    <thead>
+                                        <tr>
+                                            <th colSpan={5}>Personal Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>BVN</th>
+                                            <th>Gender</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{user?.fullName}</td>
+                                            <td>{user?.phoneNumber}</td>
+                                            <td>{user?.email}</td>
+                                            <td>{user?.bvn}</td>
+                                            <td>{user?.gender}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Marital Status</th>
+                                            <th>Children</th>
+                                            <th>Type of Residence</th>
+                                            <th colSpan={2}></th>
+                                        </tr>
+                                        <tr>
+                                            <td>{user?.maritalStatus}</td>
+                                            <td>{user?.children}</td>
+                                            <td>{user?.typeOfResidence}</td>
+                                            <td colSpan={2}></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {/* Education and Employment */}
+                            <div className={styles.userPb}>
+                                <table className={styles.infoTable}>
+                                    <thead>
+                                        <tr>
+                                            <th colSpan={4}>Education and Employment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Level of Education</th>
+                                            <th>Employment Status</th>
+                                            <th>Sector of Employment</th>
+                                            <th>Duration of Employment</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{user?.levelOfEducation}</td>
+                                            <td>{user?.employmentStatus}</td>
+                                            <td>{user?.sectorOfEmployment}</td>
+                                            <td>{user?.durationOfEmployment}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Office Email</th>
+                                            <th>Monthly Income</th>
+                                            <th>Loan Repayment</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>{user?.officeEmail}</td>
+                                            <td>₦{user?.monthlyIncome}</td>
+                                            <td>₦{user?.loanRepayment}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {/* Socials */}
+                            <div className={styles.userPb}>
+                                <table className={styles.infoTable}>
+                                    <thead>
+                                        <tr>
+                                            <th colSpan={3}>Socials</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Twitter</th>
+                                            <th>Facebook</th>
+                                            <th>Instagram</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{user?.twitter}</td>
+                                            <td>{user?.facebook}</td>
+                                            <td>{user?.instagram}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {/* Guarantor */}
+                            <div className={styles.userPb}>
+                                <table className={styles.infoTable}>
+                                    <thead>
+                                        <tr>
+                                            <th colSpan={4}>Guarantor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Relationship</th>
+                                        </tr>
+                                        {user?.guarantor.map((g, index) => (
+                                            <tr key={index}>
+                                                <td>{g.fullName}</td>
+                                                <td>{g.phoneNumber}</td>
+                                                <td>{g.emailAddress}</td>
+                                                <td>{g.relationship}</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>Full Name</th>
-                                                <th>Phone Number</th>
-                                                <th>Email Address</th>
-                                                <th>BVN</th>
-                                                <th>Gender</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.fullName}</td>
-                                                <td>{user?.phoneNumber}</td>
-                                                <td>{user?.email}</td>
-                                                <td>{user?.bvn}</td>
-                                                <td>{user?.gender}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Marital Status</th>
-                                                <th>Children</th>
-                                                <th>Type of Residence</th>
-                                                <th colSpan={2}></th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.maritalStatus}</td>
-                                                <td>{user?.children}</td>
-                                                <td>{user?.typeOfResidence}</td>
-                                                <td colSpan={2}></td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody className={styles.tbodySho}>
-                                            <tr>
-                                                <th>Full Name</th>
-                                                <td>{user?.fullName}</td>
-                                                <th>Phone Number</th>
-                                                <td>{user?.phoneNumber}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Email Address</th>
-                                                <td>{user?.email}</td>
-                                                <th>BVN</th>
-                                                <td>{user?.bvn}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Gender</th>
-                                                <td>{user?.gender}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Marital Status</th>
-                                                <td>{user?.maritalStatus}</td>
-                                                <th>Children</th>
-                                                <td>{user?.children}</td>
-                                                <th colSpan={2}></th>
-                                            </tr>
-                                            <tr>
-                                                <th>Type of Residence</th>
-                                                <td>{user?.typeOfResidence}</td>
-                                                <td colSpan={2}></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className={styles.userPb}>
-                                    <table className={styles.infoTable}>
-                                        <thead>
-                                            <tr>
-                                                <th colSpan={4}>Education and Employment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>Level of Education</th>
-                                                <th>Employment Status</th>
-                                                <th>Sector of Employment</th>
-                                                <th>Duration of Employment</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.levelOfEducation}</td>
-                                                <td>{user?.employmentStatus}</td>
-                                                <td>{user?.sectorOfEmployment}</td>
-                                                <td>{user?.durationOfEmployment}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Office Email</th>
-                                                <th>Monthly Income</th>
-                                                <th>Loan Repayment</th>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.officeEmail}</td>
-                                                <td>₦{user?.monthlyIncome}</td>
-                                                <td>₦{user?.loanRepayment}</td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody className={styles.tbodySho}>
-                                            <tr>
-                                                <th>Level of Education</th>
-                                                <td>{user?.levelOfEducation}</td>
-                                                <th>Employment Status</th>
-                                                <td>{user?.employmentStatus}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Sector of Employment</th>
-                                                <td>{user?.sectorOfEmployment}</td>
-                                                <th>Duration of Employment</th>
-                                                <td>{user?.durationOfEmployment}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Office Email</th>
-                                                <th>Monthly Income</th>
-                                                <th>Loan Repayment</th>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.officeEmail}</td>
-                                                <td>₦{user?.monthlyIncome}</td>
-                                                <td>₦{user?.loanRepayment}</td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className={styles.userPb}>
-                                    <table className={styles.infoTable}>
-                                        <thead>
-                                            <tr>
-                                                <th colSpan={3}>Socials</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>Twitter</th>
-                                                <th>Facebook</th>
-                                                <th>Instagram</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.twitter}</td>
-                                                <td>{user?.facebook}</td>
-                                                <td>{user?.instagram}</td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody className={styles.tbodySho}>
-                                            <tr>
-                                                <th>Twitter</th>
-                                                <th>Facebook</th>
-                                                <th>Instagram</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{user?.twitter}</td>
-                                                <td>{user?.facebook}</td>
-                                                <td>{user?.instagram}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className={styles.userPb}>
-                                    <table className={styles.infoTable}>
-                                        <thead>
-                                            <tr>
-                                                <th colSpan={4}>Guarantor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>Full Name</th>
-                                                <th>Phone Number</th>
-                                                <th>Email Address</th>
-                                                <th>Relationship</th>
-                                            </tr>
-                                            {user?.guarantor.map((g, index) => (
-                                                <tr key={index}>
-                                                    <td>{g.fullName}</td>
-                                                    <td>{g.phoneNumber}</td>
-                                                    <td>{g.emailAddress}</td>
-                                                    <td>{g.relationship}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                        <tbody className={styles.tbodySho}>
-                                            <tr>
-                                                <th>Full Name</th>
-                                                <th>Phone Number</th>
-                                                <th>Email Address</th>
-                                                <th>Relationship</th>
-                                            </tr>
-                                            {user?.guarantor.map((g, index) => (
-                                                <tr key={index}>
-                                                    <td>{g.fullName}</td>
-                                                    <td>{g.phoneNumber}</td>
-                                                    <td>{g.emailAddress}</td>
-                                                    <td>{g.relationship}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -331,63 +249,56 @@ const UserDetails: React.FC = () => {
                                             <p><FaStar /><FaRegStar /><FaRegStar /></p>
                                         </div>
                                     </div>
-                                    <div className={styles.genSide}>
-                                        <div className={styles.genSpa}>
-                                            <h1>₦{user?.monthlyIncome}</h1>
+                                    <div className={`${styles.genSide} ${styles.genS}`}>
+                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
+                                            <h1>Account Balance</h1>
+                                            <p>₦{user?.accountBalance}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${styles.genSide} ${styles.genS}`}>
+                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
+                                            <h1>Phone Number</h1>
                                             <p>{user?.phoneNumber}</p>
                                         </div>
                                     </div>
+                                    <div className={`${styles.genSide} ${styles.genS}`}>
+                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
+                                            <h1>Nationality</h1>
+                                            <p>{user?.nationality}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${styles.genSide} ${styles.genS}`}>
+                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
+                                            <h1>Gender</h1>
+                                            <p>{user?.gender}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className={styles.genDets}>
-                                    <button
-                                        onClick={() => handleSectionChange('generalDetails')}
-                                        className={`${activeSection === 'generalDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}>
-                                            <i className={styles.hiddenText}>General Details</i>
-                                            <p className={styles.gendIco}><FaFile /></p></p>
-                                    </button>
-                                    <button
-                                        onClick={() => handleSectionChange('documents')}
-                                        className={`${activeSection === 'documents' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <i className={styles.hiddenText}>Documents</i>
-                                        <p className={styles.gendIco}><FaRegFileAlt /></p>
-                                    </button>
-                                    <button
-                                        onClick={() => handleSectionChange('bankDetails')}
-                                        className={`${activeSection === 'bankDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <i className={styles.hiddenText}>Bank Details</i>
-                                        <p className={styles.gendIco}><FaUniversity /></p>
-                                    </button>
-                                    <button
-                                        onClick={() => handleSectionChange('loans')}
-                                        className={`${activeSection === 'loans' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <i className={styles.hiddenText}>Loans</i>
-                                        <p className={styles.gendIco}><FaMoneyBill /></p>
-                                    </button>
-                                    <button
-                                        onClick={() => handleSectionChange('savings')}
-                                        className={`${activeSection === 'savings' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <i className={styles.hiddenText}>Savings</i>
-                                        <p className={styles.gendIco}><FaMoneyBillWaveAlt /></p>
-                                    </button>
-                                    <button
-                                        onClick={() => handleSectionChange('appAndSystem')}
-                                        className={`${activeSection === 'appAndSystem' ? styles.genAct : ''} ${styles.sectionButton}`}
-                                    >
-                                        <i className={styles.hiddenText}>App and Systems</i>
-                                        <p className={styles.gendIco}>#</p>
-                                    </button>
+                                <div className={styles.genBottom}>
+                                    <div className={styles.tabBtns}>
+                                        <button onClick={() => handleSectionChange('generalDetails')} className={activeSection === 'generalDetails' ? styles.active : ''}>
+                                            <FaRegFileAlt /> General Details
+                                        </button>
+                                        <button onClick={() => handleSectionChange('documents')} className={activeSection === 'documents' ? styles.active : ''}>
+                                            <FaFile /> Documents
+                                        </button>
+                                        <button onClick={() => handleSectionChange('bankDetails')} className={activeSection === 'bankDetails' ? styles.active : ''}>
+                                            <FaMoneyBill /> Bank Details
+                                        </button>
+                                        <button onClick={() => handleSectionChange('loans')} className={activeSection === 'loans' ? styles.active : ''}>
+                                            <FaMoneyBillWaveAlt /> Loans
+                                        </button>
+                                        <button onClick={() => handleSectionChange('savings')} className={activeSection === 'savings' ? styles.active : ''}>
+                                            <FaUniversity /> Savings
+                                        </button>
+                                        <button onClick={() => handleSectionChange('appAndSystem')} className={activeSection === 'appAndSystem' ? styles.active : ''}>
+                                            <FaRegFileAlt /> App and System
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.spacev}>
-                        {renderSection()}
+                        <div className={styles.User1}>{renderSection()}</div>
                     </div>
                 </div>
             </section>
