@@ -60,8 +60,11 @@ Accessing Serverless Functions
 After deployment, the serverless functions are available at:
 
 Get all users: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users
-Get user by index: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users/:index
+
+Get user by index: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users?index=${index}
+
 Authenticate user: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users
+
 API Endpoints
 GET /users: Retrieves a list of all users.
 GET /users/
