@@ -50,6 +50,28 @@ Copy code
 node src/server.js
 The server will be available at http://localhost:8000.
 
+
+Deployment on Vercel
+Configuration
+The project can also be deployed on Vercel. Ensure that the vercel.json file is configured correctly:
+
+
+Accessing Serverless Functions
+After deployment, the serverless functions are available at:
+
+Get all users: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users
+Get user by index: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users/:index
+Authenticate user: https://steven-seidu-lendsqr-fe-test.vercel.app/api/users
+API Endpoints
+GET /users: Retrieves a list of all users.
+GET /users/
+: Retrieves a user by their index.
+POST /users: Authenticates a user by email and password.
+Environment Variables
+No specific environment variables are required for this project. Ensure that any sensitive data (if added later) is handled securely.
+
+
+
 Deployment on Netlify
 Configuration
 The project uses Netlify for deployment. The configuration is specified in the netlify.toml file:
@@ -61,25 +83,6 @@ After deployment, the serverless functions are available at:
 Get all users: https://ayomikunsteven-seidu-lendsqr-fe-test.netlify.app/.netlify/functions/server/users
 Get user by index: https://ayomikunsteven-seidu-lendsqr-fe-test.netlify.app/.netlify/functions/server/users/:index
 Authenticate user: https://ayomikunsteven-seidu-lendsqr-fe-test.netlify.app/.netlify/functions/server/users
-Deployment on Vercel
-Configuration
-The project can also be deployed on Vercel. Ensure that the vercel.json file is configured correctly:
-
-
-Accessing Serverless Functions
-After deployment, the serverless functions are available at:
-
-Get all users: https://your-vercel-deployment-url/api/users
-Get user by index: https://your-vercel-deployment-url/api/users/:index
-Authenticate user: https://your-vercel-deployment-url/api/users
-API Endpoints
-GET /users: Retrieves a list of all users.
-GET /users/
-: Retrieves a user by their index.
-POST /users: Authenticates a user by email and password.
-Environment Variables
-No specific environment variables are required for this project. Ensure that any sensitive data (if added later) is handled securely.
-
 Troubleshooting
 CORS Issues: Ensure that the CORS middleware is properly configured in server.js.
 Deployment Errors: Check Netlify or Vercel build logs for errors related to deployment or serverless functions.
