@@ -54,28 +54,6 @@ Deployment on Netlify
 Configuration
 The project uses Netlify for deployment. The configuration is specified in the netlify.toml file:
 
-toml
-Copy code :
-
-[build]
-  base = "/"                  # Base directory for the build
-  command = "npm run build"   # Build command
-  publish = "build"           # Directory to publish
-
-[functions]
-  directory = "."              # Directory for serverless functions (root directory)
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
-
-  # Redirect API requests to serverless functions
-  from = "/api/*"
-  to = "/.netlify/functions/server/:splat"
-  status = 200
-  force = true
 
 Accessing Serverless Functions
 After deployment, the serverless functions are available at:
@@ -87,35 +65,6 @@ Deployment on Vercel
 Configuration
 The project can also be deployed on Vercel. Ensure that the vercel.json file is configured correctly:
 
-json
-Copy code: 
-
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "src/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "src/**/*",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/src/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/build/index.html"
-    }
-  ]
-}
 
 Accessing Serverless Functions
 After deployment, the serverless functions are available at:
