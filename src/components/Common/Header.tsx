@@ -17,7 +17,7 @@ const Nav: React.FC<NavProps> = ({ username, toggleSidebar }) => {
         <div className={styles.Mnav}>
           <div className={styles.logo}>
             <img src={Logo} alt="Lendsqr Logo" />
-            <h1><Link className={styles.nodeco} to="/UserPage">Lendsqr</Link></h1>
+            <h1><Link className={styles.nodeco} to="/DashBoard">Lendsqr</Link></h1>
           </div>
           <div className={styles.form}>
             <form action="#" method="post">
