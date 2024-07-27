@@ -88,7 +88,7 @@ const UserComponent: React.FC = () => {
             setUsername(storedUsername);
         }
 
-        fetch('http://localhost:8000/users')
+        fetch('https://steven-seidu-lendsqr-fe-test.vercel.app/api/users')
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
@@ -158,7 +158,7 @@ const UserComponent: React.FC = () => {
 
     useEffect(() => {
         if (users) {
-            fetch('http://localhost:8000/users')
+            fetch('https://steven-seidu-lendsqr-fe-test.vercel.app/api/users')
                 .then(response => {
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json();
