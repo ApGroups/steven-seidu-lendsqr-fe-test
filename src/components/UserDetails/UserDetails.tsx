@@ -332,56 +332,63 @@ const UserDetails: React.FC = () => {
                                             <p><FaStar /><FaRegStar /><FaRegStar /></p>
                                         </div>
                                     </div>
-                                    <div className={`${styles.genSide} ${styles.genS}`}>
-                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
-                                            <h1>Account Balance</h1>
-                                            <p>₦{user?.accountBalance}</p>
-                                        </div>
-                                    </div>
-                                    <div className={`${styles.genSide} ${styles.genS}`}>
-                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
-                                            <h1>Phone Number</h1>
+                                    <div className={styles.genSide}>
+                                        <div className={styles.genSpa}>
+                                            <h1>₦{user?.monthlyIncome}</h1>
                                             <p>{user?.phoneNumber}</p>
                                         </div>
                                     </div>
-                                    <div className={`${styles.genSide} ${styles.genS}`}>
-                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
-                                            <h1>Nationality</h1>
-                                            <p>{user?.nationality}</p>
-                                        </div>
-                                    </div>
-                                    <div className={`${styles.genSide} ${styles.genS}`}>
-                                        <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
-                                            <h1>Gender</h1>
-                                            <p>{user?.gender}</p>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div className={styles.genBottom}>
-                                    <div className={styles.tabBtns}>
-                                        <button onClick={() => handleSectionChange('generalDetails')} className={activeSection === 'generalDetails' ? styles.active : ''}>
-                                            <FaRegFileAlt /> General Details
-                                        </button>
-                                        <button onClick={() => handleSectionChange('documents')} className={activeSection === 'documents' ? styles.active : ''}>
-                                            <FaFile /> Documents
-                                        </button>
-                                        <button onClick={() => handleSectionChange('bankDetails')} className={activeSection === 'bankDetails' ? styles.active : ''}>
-                                            <FaMoneyBill /> Bank Details
-                                        </button>
-                                        <button onClick={() => handleSectionChange('loans')} className={activeSection === 'loans' ? styles.active : ''}>
-                                            <FaMoneyBillWaveAlt /> Loans
-                                        </button>
-                                        <button onClick={() => handleSectionChange('savings')} className={activeSection === 'savings' ? styles.active : ''}>
-                                            <FaUniversity /> Savings
-                                        </button>
-                                        <button onClick={() => handleSectionChange('appAndSystem')} className={activeSection === 'appAndSystem' ? styles.active : ''}>
-                                            <FaRegFileAlt /> App and System
-                                        </button>
-                                    </div>
+                                <div className={styles.genDets}>
+                                    <button
+                                        onClick={() => handleSectionChange('generalDetails')}
+                                        className={`${activeSection === 'generalDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}>
+                                            <i className={styles.hiddenText}>General Details</i>
+                                            <p className={styles.gendIco}><FaFile /></p></p>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSectionChange('documents')}
+                                        className={`${activeSection === 'documents' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <i className={styles.hiddenText}>Documents</i>
+                                        <p className={styles.gendIco}><FaRegFileAlt /></p>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSectionChange('bankDetails')}
+                                        className={`${activeSection === 'bankDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <i className={styles.hiddenText}>Bank Details</i>
+                                        <p className={styles.gendIco}><FaUniversity /></p>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSectionChange('loans')}
+                                        className={`${activeSection === 'loans' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <i className={styles.hiddenText}>Loans</i>
+                                        <p className={styles.gendIco}><FaMoneyBill /></p>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSectionChange('savings')}
+                                        className={`${activeSection === 'savings' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <i className={styles.hiddenText}>Savings</i>
+                                        <p className={styles.gendIco}><FaMoneyBillWaveAlt /></p>
+                                    </button>
+                                    <button
+                                        onClick={() => handleSectionChange('appAndSystem')}
+                                        className={`${activeSection === 'appAndSystem' ? styles.genAct : ''} ${styles.sectionButton}`}
+                                    >
+                                        <i className={styles.hiddenText}>App and Systems</i>
+                                        <p className={styles.gendIco}>#</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.User1}>{renderSection()}</div>
+                    </div>
+                    <div className={styles.spacev}>
+                        {renderSection()}
                     </div>
                 </div>
             </section>
