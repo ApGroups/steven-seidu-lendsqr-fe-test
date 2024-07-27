@@ -4,7 +4,7 @@
   publish = "build"           # Directory to publish
 
 [functions]
-  directory = "."              # Directory for serverless functions (root directory)
+  directory = "/netlify/functions/"              # Directory for serverless functions (root directory)
 
 [[redirects]]
   from = "/*"
