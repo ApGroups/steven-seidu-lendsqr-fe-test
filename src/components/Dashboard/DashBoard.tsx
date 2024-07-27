@@ -199,7 +199,7 @@ const UserComponent: React.FC = () => {
                                         <p>Statistics</p>
                                         <div className={styles.us1Icon}><i><FaEllipsisH /></i></div>
                                     </div>
-                                    <div className={styles.chartContainer}>
+                                    <div className={`${styles.chartContainer} ${styles.hiddenText}`}>
                                         <ReactApexChart
                                             options={donutChartOptions}
                                             series={loanRepayments}
@@ -208,6 +208,15 @@ const UserComponent: React.FC = () => {
                                             width="100%"
                                         />
                                     </div>
+                                <div className={`${styles.chartContainer} ${styles.showCha}`}>
+                                    <ReactApexChart
+                                        options={barChartOptions}
+                                        series={[{ name: 'Activity', data: [10, 15, 20, 25, 30] }]}
+                                        type="bar"
+                                        height="100%"
+                                        width="100%"
+                                    />
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -218,15 +227,23 @@ const UserComponent: React.FC = () => {
                                         <p>Statistics</p>
                                         <div className={styles.us1Icon}><i><FaEllipsisH /></i></div>
                                     </div>
-                                    <div className={styles.chartContainer}>
+                                    <div className={`${styles.chartContainer} ${styles.hiddenText}`}>
                                         <ReactApexChart
                                             options={donutChartOptions}
                                             series={expenses}
                                             type="donut"
-                                            height="100%"
-                                            width="80%"
+                                            width="100%"
                                         />
                                     </div>
+                                <div className={`${styles.chartContainer} ${styles.showCha}`}>
+                                    <ReactApexChart
+                                        options={barChartOptions}
+                                        series={[{ name: 'Activity', data: [10, 15, 20, 25, 30] }]}
+                                        type="bar"
+                                        height="100%"
+                                        width="100%"
+                                    />
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -379,7 +396,7 @@ const UserComponent: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.User1}>
+                        <div className={`${styles.User1} ${styles.Us11}`}>
                             <div className={styles.Us1}>
                                 <div className={styles.us1Txt}>
                                     <p><FaInstagram /></p>
