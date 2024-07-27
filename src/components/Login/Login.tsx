@@ -15,21 +15,21 @@ const UserComponent: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     setError(null);
-  
+
     try {
       const response = await fetch('http://localhost:8000/users', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-  
+
       const data = await response.json();
       console.log('Login successful:', data);
-  
+
       // Store the username in local storage or context
       localStorage.setItem('username', data.username); 
   
@@ -41,7 +41,6 @@ const UserComponent: React.FC = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <section className={styles.sec}>

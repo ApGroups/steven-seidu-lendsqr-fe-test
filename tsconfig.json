@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "server.js"  ]
+, "netlify/functions/server.js"  ]
 }

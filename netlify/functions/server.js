@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 const port = 8000;
 
-const dbPath = path.join(__dirname, './data/db.json');
+const dbPath = path.join(__dirname, '../../data/db.json');
 let users = [];
 
 // Enable CORS
