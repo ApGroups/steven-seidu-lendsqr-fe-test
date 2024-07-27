@@ -17,7 +17,7 @@ const UserComponent: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('https://your-vercel-project-url/api/users', { 
+      const response = await fetch('https://steven-seidu-lendsqr-fe-test.vercel.app/api/users', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
