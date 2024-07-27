@@ -94,6 +94,36 @@ const UserDetails: React.FC = () => {
                                                 <td colSpan={2}></td>
                                             </tr>
                                         </tbody>
+                                        <tbody className={styles.tbodySho}>
+                                            <tr>
+                                                <th>Full Name</th>
+                                                <td>{user?.fullName}</td>
+                                                <th>Phone Number</th>
+                                                <td>{user?.phoneNumber}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email Address</th>
+                                                <td>{user?.email}</td>
+                                                <th>BVN</th>
+                                                <td>{user?.bvn}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Gender</th>
+                                                <td>{user?.gender}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Marital Status</th>
+                                                <td>{user?.maritalStatus}</td>
+                                                <th>Children</th>
+                                                <td>{user?.children}</td>
+                                                <th colSpan={2}></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Type of Residence</th>
+                                                <td>{user?.typeOfResidence}</td>
+                                                <td colSpan={2}></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className={styles.userPb}>
@@ -114,6 +144,32 @@ const UserDetails: React.FC = () => {
                                                 <td>{user?.levelOfEducation}</td>
                                                 <td>{user?.employmentStatus}</td>
                                                 <td>{user?.sectorOfEmployment}</td>
+                                                <td>{user?.durationOfEmployment}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Office Email</th>
+                                                <th>Monthly Income</th>
+                                                <th>Loan Repayment</th>
+                                                <th></th>
+                                            </tr>
+                                            <tr>
+                                                <td>{user?.officeEmail}</td>
+                                                <td>₦{user?.monthlyIncome}</td>
+                                                <td>₦{user?.loanRepayment}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody className={styles.tbodySho}>
+                                            <tr>
+                                                <th>Level of Education</th>
+                                                <td>{user?.levelOfEducation}</td>
+                                                <th>Employment Status</th>
+                                                <td>{user?.employmentStatus}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Sector of Employment</th>
+                                                <td>{user?.sectorOfEmployment}</td>
+                                                <th>Duration of Employment</th>
                                                 <td>{user?.durationOfEmployment}</td>
                                             </tr>
                                             <tr>
@@ -150,6 +206,18 @@ const UserDetails: React.FC = () => {
                                                 <td>{user?.instagram}</td>
                                             </tr>
                                         </tbody>
+                                        <tbody className={styles.tbodySho}>
+                                            <tr>
+                                                <th>Twitter</th>
+                                                <th>Facebook</th>
+                                                <th>Instagram</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{user?.twitter}</td>
+                                                <td>{user?.facebook}</td>
+                                                <td>{user?.instagram}</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className={styles.userPb}>
@@ -160,6 +228,22 @@ const UserDetails: React.FC = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <th>Full Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Email Address</th>
+                                                <th>Relationship</th>
+                                            </tr>
+                                            {user?.guarantor.map((g, index) => (
+                                                <tr key={index}>
+                                                    <td>{g.fullName}</td>
+                                                    <td>{g.phoneNumber}</td>
+                                                    <td>{g.emailAddress}</td>
+                                                    <td>{g.relationship}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                        <tbody className={styles.tbodySho}>
                                             <tr>
                                                 <th>Full Name</th>
                                                 <th>Phone Number</th>
@@ -201,8 +285,8 @@ const UserDetails: React.FC = () => {
 
     return (
         <>
-            <Nav username={username} toggleSidebar={() => {}} />
-            <Sidebar isVisible={true} toggleSidebar={() => {}} />
+            <Nav username={username} toggleSidebar={() => { }} />
+            <Sidebar isVisible={true} toggleSidebar={() => { }} />
             <section className={styles.sec}>
                 <div className={styles.secpad}>
                     <div>
@@ -244,7 +328,7 @@ const UserDetails: React.FC = () => {
                                     <div className={`${styles.genSide} ${styles.genS}`}>
                                         <div className={`${styles.genSpa} ${styles.genspar} ${styles.dengol}`}>
                                             <h1>User’s Tier</h1>
-                                            <p><FaStar/><FaRegStar/><FaRegStar/></p>
+                                            <p><FaStar /><FaRegStar /><FaRegStar /></p>
                                         </div>
                                     </div>
                                     <div className={styles.genSide}>
@@ -259,42 +343,43 @@ const UserDetails: React.FC = () => {
                                         onClick={() => handleSectionChange('generalDetails')}
                                         className={`${activeSection === 'generalDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}>General Details</p>
-                                        <p className={styles.gendIco}><FaFile/></p>
+                                        <p className={activeSection === 'generalDetails' ? styles.genActive : ''}>
+                                            <i className={styles.hiddenText}>General Details</i>
+                                            <p className={styles.gendIco}><FaFile /></p></p>
                                     </button>
                                     <button
                                         onClick={() => handleSectionChange('documents')}
                                         className={`${activeSection === 'documents' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        Documents
-                                        <p className={styles.gendIco}><FaRegFileAlt/></p>
+                                        <i className={styles.hiddenText}>Documents</i>
+                                        <p className={styles.gendIco}><FaRegFileAlt /></p>
                                     </button>
                                     <button
                                         onClick={() => handleSectionChange('bankDetails')}
                                         className={`${activeSection === 'bankDetails' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        Bank Details
-                                        <p className={styles.gendIco}><FaUniversity/></p>
+                                        <i className={styles.hiddenText}>Bank Details</i>
+                                        <p className={styles.gendIco}><FaUniversity /></p>
                                     </button>
                                     <button
                                         onClick={() => handleSectionChange('loans')}
                                         className={`${activeSection === 'loans' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        Loans
-                                        <p className={styles.gendIco}><FaMoneyBill/></p>
+                                        <i className={styles.hiddenText}>Loans</i>
+                                        <p className={styles.gendIco}><FaMoneyBill /></p>
                                     </button>
                                     <button
                                         onClick={() => handleSectionChange('savings')}
                                         className={`${activeSection === 'savings' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        Savings
-                                        <p className={styles.gendIco}><FaMoneyBillWaveAlt/></p>
+                                        <i className={styles.hiddenText}>Savings</i>
+                                        <p className={styles.gendIco}><FaMoneyBillWaveAlt /></p>
                                     </button>
                                     <button
                                         onClick={() => handleSectionChange('appAndSystem')}
                                         className={`${activeSection === 'appAndSystem' ? styles.genAct : ''} ${styles.sectionButton}`}
                                     >
-                                        App and Systems
+                                        <i className={styles.hiddenText}>App and Systems</i>
                                         <p className={styles.gendIco}>#</p>
                                     </button>
                                 </div>
