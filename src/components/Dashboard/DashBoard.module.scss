@@ -29,12 +29,8 @@ li {
     padding: 10px;
 }
 .hiddenText {
-    padding-left: 10px;
 
-    @media (min-width: 850px) {
-        display: none;
-    }
-    @media (max-width: 500px) {
+    @media (max-width: 1490px) {
         display: none;
     }
 }
@@ -136,7 +132,7 @@ li i {
 }
 
 .userSec2 {
-    width: 75%;
+    width: 90%;
     height: 40vh;
     // background-color: red;
 }
@@ -173,6 +169,13 @@ li i {
     @media (max-width: 500px) {
         font-size: 20px;
         align-self: center;
+    }
+}
+.Us11{
+  @media (max-width: 800px) {
+        width: 90%;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -558,6 +561,12 @@ table {
         height: 250px; // Adjust height for smaller screens if necessary
     }
 }
+.showCha{
+    @media (min-width: 1490px) {
+        background-color: red;
+        display: none;
+    }
+}
 
 /* Add to your existing DashBoard.module.scss */
 .userSec4 {
@@ -594,4 +603,6 @@ table {
         }
     }
 }
+
+
 
